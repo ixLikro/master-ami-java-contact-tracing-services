@@ -11,8 +11,9 @@ This is the microservice implementation, you can find the monolithic implementat
 This software tracks the movements of individual users,
 create heat maps of movement hotspots and provide an interface for sending notifications of contacts with infected individuals.
 
-The goal of this software was to implement a technical showcase rather than a real world useful application.  
+The goal of this software was to implement a technical showcase rather than a useful real world application.  
 
+![readme gif](https://github.com/ixLikro/master-ami-java-contact-tracing-services/blob/master/misc/readme_gif.gif?raw=true)
 ## Microservices overview
 
 | name  | default <br /> port | type | description  |
@@ -31,6 +32,9 @@ The goal of this software was to implement a technical showcase rather than a re
 From the host are all container available at http://localhost:{port number}
 <br />
 Other container can communicate over a podman network http://{service name}:{port number}
+
+## Architecture overview
+![Architecture overview](https://github.com/ixLikro/master-ami-java-contact-tracing-services/blob/master/misc/architecture.png?raw=true)
 
 ## Build services **
 1. Clone this repo
