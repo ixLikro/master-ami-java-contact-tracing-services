@@ -1,0 +1,23 @@
+## Stage 1 : build with maven builder image with native capabilities
+FROM quay.io/quarkus/centos-quarkus-maven:20.3.1-java11 AS build
+COPY pom.xml /usr/src/app/
+RUN mvn -f /usr/src/app/pom.xml -B de.qaware.maven:go-offline-maven-plugin:1.2.5:resolve-dependencies
+COPY src /usr/src/app/src
+USER root
+RUN chown -R quarkus /usr/src/app
+USER quarkus
+RUN mvn -DskipTests -f /usr/src/app/pom.xml clean package
+
+# 2nd image as deploy
+FROM openjdk:17-oracle AS deploy
+
+# create app directory
+WORKDIR /usr/app
+
+# copy only the built uber jar from the 1st image
+COPY --from=build /usr/src/app/target/*-runner.jar .
+
+# expose port
+EXPOSE 8083
+
+CMD java -Dquarkus.http.host=0.0.0.0 -jar /usr/app/preprocessing-runner.jar

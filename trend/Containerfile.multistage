@@ -1,0 +1,26 @@
+# 1st image is for building purposes only
+FROM maven:3.6-jdk-11 AS build
+
+# create app directory
+WORKDIR /usr/app
+
+# copy the source, cli scripts and pom
+COPY src ./src
+COPY pom-bootable.xml .
+
+# build bootable jar
+RUN mvn clean package -f pom-bootable.xml
+
+# 2nd image as deploy
+FROM openjdk:17-oracle AS deploy
+
+# create app directory
+WORKDIR /usr/app
+
+# copy only the built bootable jar from the 1st image
+COPY --from=build /usr/app/target/trend-bootable.jar .
+
+# expose port from wildfly
+EXPOSE 8086
+
+CMD java -Djboss.http.port=8086 -Djboss.management.http.port=9996 -Djboss.https.port=8086 -jar /usr/app/trend-bootable.jar

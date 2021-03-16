@@ -1,0 +1,18 @@
+# this time only one image
+FROM postgres:13
+
+# set db env variables
+ENV POSTGRES_PASSWORD postgres
+ENV POSTGES_USER admin
+
+# set local to german
+RUN localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8
+ENV LANG de_DE.utf8
+
+# copy sql init scripts
+COPY ./scripts/sql/movement_data /docker-entrypoint-initdb.d
+
+# expose db port
+EXPOSE 5432
+
+CMD ["postgres"]
