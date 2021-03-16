@@ -6,9 +6,9 @@ A monolithic implementation and a microservice implementation.
 This is the microservice implementation, you can find the monolithic implementation [here](https://github.com/ixLikro/master-ami-java-contact-tracing-monolith).
 
 
-# Contact tracking
+# Contact tracing
 
-This software tracks the movements of individual users,
+This software traces the movements of users,
 create heat maps of movement hotspots and provide an interface for sending notifications of contacts with infected individuals.
 
 The goal of this software was to implement a technical showcase rather than a useful real world application.  
@@ -39,11 +39,11 @@ Other container can communicate over a podman network http://{service name}:{por
 ## Build services **
 1. Clone this repo
    ```
-   git clone https://gitlab-fi.ostfalia.de/ami-team-1/aim-team-1.git
+   git clone https://github.com/ixLikro/master-ami-java-contact-tracing-services.git
    ```
 2. cd into the cloned directory
    ```
-   cd aim-team-1/
+   cd master-ami-java-contact-tracing-services/
    ```
 3. give execution privilege to the two scripts
    ```
