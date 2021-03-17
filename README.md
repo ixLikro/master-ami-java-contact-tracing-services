@@ -5,6 +5,11 @@ A monolithic implementation and a microservice implementation.
 
 This is the microservice implementation, you can find the monolithic implementation [here](https://github.com/ixLikro/master-ami-java-contact-tracing-monolith).
 
+## Team members
+- [@abail0111](https://github.com/abail0111)
+- [@bkoern](https://github.com/bkoern)
+- [@ixLikro](https://github.com/ixLikro)
+- [@LuKlose](https://github.com/LuKlose)
 
 # Contact tracing
 
@@ -14,17 +19,18 @@ create heat maps of movement hotspots and provide an interface for sending notif
 The goal of this software was to implement a technical showcase rather than a useful real world application.  
 
 ![readme gif](https://github.com/ixLikro/master-ami-java-contact-tracing-services/blob/master/misc/readme_gif.gif?raw=true)
+
 ## Microservices overview
 
 | name  | default <br /> port | type | description  |
 |---|---|---|---|
 |data-generator|8080| Quarkus | A helper service that is able to generate multiple users with multiple movements.   |
-|analyse|8081| Quarkus| Provides the web pages with the processed data.  |
+|analyse|8081| Quarkus| Provides the processed data for the webpages.  |
 |data-acceptance| 8082|Quarkus| Handles the raw movements and the buffer database.  |
 |preprocessing| 8083|Quarkus| Reads the buffer database and saves the aggregated data in the main database |
-|landingpage|8084| Wildfly| The jsf page: landingpage  |
-|visualization|8085| Wildfly| The jsf page: visualization  |
-|trend|8086| Wildfly| The jsf page: trend  |
+|landingpage|8084| Wildfly| The jsf page: landingpage (a set of operations to test the hole application) |
+|visualization|8085| Wildfly| The jsf page: visualization (visualizes user movement on a map and displays all movements as heatmap) |
+|trend|8086| Wildfly| The jsf page: trend (calculates statistics such as infection figures, groups them by area and visualizes them on a map.) |
 |contact-tracking|8087| Quarkus| tracks the actual movements |
 |db-main|5432| PostgreSQL| the main database (nachverfolgung)  |
 |db-buffer|5433 <- host <br /> 5432 <- container| PostgreSQL| the buffer database (movement_data)  |
